@@ -9,7 +9,7 @@
 
 #include "U8glib.h"
 
-const float Versionsnummer = 0.61;
+const float Versionsnummer = 0.62;
 
 //Displays:
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); //Arduino Uno Analog in 4+5
@@ -469,17 +469,24 @@ void UpdateOLED () {
   u8g.setFont(u8g_font_gdb12);
 
   u8g.setPrintPos(10, 15);
-  u8g.print("fps"); 
+  u8g.print("Fps"); 
   u8g.setPrintPos(85, 15);
-  u8g.print(fps,0); 
+  if (fps < 0)
+  {
+    u8g.print(0,0); 
+  }
+  else
+  {
+    u8g.print(fps,0); 
+  }
 
   u8g.setPrintPos(10, 38);
-  u8g.print("fps +/-"); 
+  u8g.print("Fps +/-"); 
   u8g.setPrintPos(85, 38);
   u8g.print(sigma); 
 
   u8g.setPrintPos(10, 61);
-  u8g.print("bps"); 
+  u8g.print("Bps"); 
   u8g.setPrintPos(85, 61);
   u8g.print(maxBps,1); 
 }
